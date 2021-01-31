@@ -1,0 +1,8 @@
+group 'com.vs.common.dto'
+
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}

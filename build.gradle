@@ -1,0 +1,86 @@
+buildscript {
+    ext {
+        springBootVersion = '2.4.2'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+allprojects {
+    apply plugin: 'idea'
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = 'com.vs.spboot'
+    version = '1.0-SNAPSHOT'
+    sourceCompatibility = '1.8'
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    ext {
+        mapstructVersion = "1.4.1.Final"
+        jacksonVersion = "2.10.1"
+        generatedMapperSourcesDir = "${buildDir}/generated-src/mapstruct/main"
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+
+        implementation "io.jsonwebtoken:jjwt-api:${jwtVersion}"
+        implementation "io.jsonwebtoken:jjwt-impl:${jwtVersion}"
+        implementation "io.jsonwebtoken:jjwt-jackson:${jwtVersion}"
+
+        implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+        annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+        implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+        implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+//        implementation 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+//        implementation 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+
+        implementation 'com.google.guava:guava:15.0'
+//        implementation 'joda-time:joda-time:2.3'
+
+
+        // Logging dependencies
+        implementation 'ch.qos.logback:logback-classic:1.2.3'
+        implementation 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
+        implementation 'ch.qos.logback.contrib:logback-jackson:0.1.5'
+
+        //Test Framework
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+}
+/*tasks.withType(JavaCompile) {
+    options.compilerArgs = [
+            '-Amapstruct.suppressGeneratorTimestamp=true'
+    ]
+}*/

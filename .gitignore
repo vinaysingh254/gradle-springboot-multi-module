@@ -1,0 +1,20 @@
+# Intellij
+.idea
+**/*.iml
+.gradle
+build
+gradle/
+**/build/
+!src/**/build/
+!gradle-wrapper.jar
+# Mac
+.DS_Store
+
+# Maven
+log/
+**/target
+**/build
+# Misc
+*.log
+*.swp
+*.tmp

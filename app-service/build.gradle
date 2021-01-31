@@ -1,0 +1,22 @@
+group 'com.vs.spboot'
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+dependencies {
+
+    implementation project(':common-dto')
+    implementation project(':app-model')
+    implementation project(':app-repository')
+    implementation project(':app-security')
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+}
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}

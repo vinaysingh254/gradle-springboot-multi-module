@@ -1,0 +1,11 @@
+group 'com.vs.security'
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation project(':app-model')
+}

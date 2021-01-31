@@ -1,0 +1,14 @@
+rootProject.name = 'gradle-spboot-multi-module'
+include 'app-model'
+include 'app-repository'
+include 'app-service'
+include 'app-security'
+include 'app-ws'
+include 'app-gateway'
+include 'common-dto'
+
+/*
+
+rootProject.children.findAll { children ->
+    children.buildFileName = "${children.name}.gradle"
+}*/
